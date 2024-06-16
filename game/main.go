@@ -279,9 +279,3 @@ func main() {
 	}
 }
 
-// Если Action = осмотреться && p.Room = кухня --> desc + items +
-// + backpack(надо идти в уник или собрать рюкзак) + exits
-// Если Action = идти комната ----> desc + exits
-// Если Action = осмотреться && p.Room = комната --> items  + exits
-// Если Action = идти кухня ----> Кухня ничего интересного + exits
-//
