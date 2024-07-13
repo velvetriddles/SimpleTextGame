@@ -1,85 +1,67 @@
-# Домашнее задание №1
+# Text Adventure Game in Go
 
-## Тема
+This repository contains a text-based adventure game implemented in Go. The game was created as part of a homework assignment to practice basic coding skills, working with structures, methods, functions, and maps in Go.
 
-Текстовая игра
+## Description
 
-## Типовой объём решения
+The game is a simple text-based adventure where the player can navigate through different rooms, interact with objects, and perform various actions. The player starts in the kitchen and can explore other rooms like the corridor, bedroom, and outside. The game reacts to player commands and provides appropriate responses.
 
-300-400 строк.
+## Features
 
-## Дедлайн
+- Navigate through different rooms
+- Interact with objects in the rooms
+- Perform actions such as "look around", "pick up", "wear", and "apply"
+- Implemented using structures and functions to allow easy extension of the game world
 
-3 недели с момента лекции, на которой была выдана домашка.
+## Requirements
 
-## Условие
+- Go programming language (version 1.16 or later)
 
-В рамках выполнения задачи вы научитесь писать базовый код, поработаете со структурами, методами, функциями, if-ами, map-ами. Никаких дополнительных специфичных знаний вам не потребуется.
+## Installation and Running
 
-Основная цель задания - поупражняться в моделировании объектов.
+1. Clone the repository or download the source code.
+2. Navigate to the directory with the source code.
+3. Run the game using the Go command:
 
-Когда-то давно, когда компьютеры были большими, интернет - медленным, а графических ускорителей не было вовсе, уже существовали многопользовательские игры. Они имели текстовый интерфейс и назывались MUD, Multi User Dungeon.
+    ```sh
+    go run main.go
+    ```
 
-Мы пишем простую игру, которая реагирует на команды игрока.
+4. To run the tests:
 
-В реализации комнат удобно использовать анонимные функции - смотрите 1/02_functions/2_firstclass.go
-Так же помните, что поле структуры может быть функцией.
+    ```sh
+    go test -v
+    ```
 
-Игровой мир обычно состоит из комнат, где может происходить какое-то действие.
-Так же у нас есть игрок.
-Как у игрока, так и у команды есть состояние.
-initGame делает нового игрока и задаёт ему начальное состояние.
-В данной версии можно обойтись глобальными переменными для игрока и мира ( комнат )
+## How to Play
 
-Команда в handleCommand парсится как
+The game accepts commands from the player in the following format:
 
-``` bash
-$команда $параметр1 $параметр2 $параметр3
-```
+```sh
+$command $parameter1 $parameter2
 
-<https://golang.org/pkg/strings/#Split> вам в помощь
+## Available Commands
 
-В тестах представлены последовательности команд и получаемый ответ.
-Задача - пройти все тесты и сделать правильно.
-Под правильным понимается универсально, чтобы можно было без проблем что-то добавить или убрать. например добавить/убрать двери или еще предметы не меняя ничего в коде, кроме инита игры в initGame. Но это не значит что вам просто весь код надо затолкать в initGame и сделать для каждого помещения отдельную реализацию каждой из возможных команд.
-Т.е. бесконечный набор захардкоженных if'ов для всего мира не подойдёт.
-Конкретные условия могут быть только внутри конкретной комнаты.
-Надо думать в сторону объектов, вызова функций, структур, которые описывают состояние комнаты и игрока, функций которые описывают какой-то интерактив в комнате. Не забывайте что вы можете создать мапу из функций. Или можно реализовать триггер (действие, выполняемое при каком-то событии). Или у структуры поле может иметь тип "функция".
+* осмотреться — Look around the current room.
+* идти [direction] — Move to another room (e.g., "идти коридор").
+* взять [item] — Pick up an item (e.g., "взять ключи").
+* надеть [item] — Wear an item (e.g., "надеть рюкзак").
+* применить [item] [object] — Apply an item to an object (e.g., "применить ключи дверь").
+* выход — Exit the game.
 
-Хардкодом (набором if-ов без нормального моделирования структур) это задание пишется за 3 часа. Но хардкором нельзя! Нормально вдумчиво - чуть дольше.
+## Example Commands
 
-Глобальная мапа с полной командой от юзера - это тоже считается за хардкод, так делать нельзя
+* осмотреться
+* идти коридор
+* взять ключи
+* надеть рюкзак
+* применить ключи дверь
 
-В задании специально некоторые места сделаны нелогичными, не надо писать и просить упростить. Это сделано для того чтобы вы пописали побольше кода и наработали навык.
+## Game World
 
-Тестовых кейсов много. Прочитайте их внимательно, там есть результаты работы всего что вам надо.
-Не стесняйтесь задавать вопросы.
-Однако прежде чем спрашивать - попробуйте что-то сделать и четко сформулируйте, что у вас не получается.
-Хитрой логики тут нет, алгоритмов тоже. Только вызов методов, сохранение состояния, условия.
+The game world consists of the following rooms:
 
-В идеале ваша архитектура с комнатами должна без проблем пережить добавление дополнительных комнат.
-
-Документация по стандартной библиотеке языка: <https://golang.org/pkg/>
-
-Код надо писать в main.go, если требуется - можно создавать дополнительные файлы.
-main_test.go править НЕЛЬЗЯ
-
-Запускать тесты через
-
-``` bash
-go test -v
-```
-
-находясь в папке `game`.
-
-дополнительно перед сдачей надо прогнать линтеры(это программа которая проверит качество кода написанного вами). это можно сделать запуском скрипта run_lint, который проверит все папки с домашками, либо запуском по конкретной папке
-
-``` bash
-# для всего
-./run_lint.sh
-
-# только для первой домашки
-golangci-lint -c .golangci.yml run ./01_intro/99_hw/...
-```
-
-предварительно надо установить golangci-lint. это гуглится и делается в зависимости от платформы (windows/mac/linux/...)
+- Kitchen (кухня): The starting room with some items.
+- Corridor (коридор): A connecting room with exits to other rooms.
+- Bedroom (комната): A room with more items to pick up.
+- Outside (улица): The final room you need to unlock by applying the keys to the door.
