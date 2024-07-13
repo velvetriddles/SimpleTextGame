@@ -39,29 +39,36 @@ The game accepts commands from the player in the following format:
 
 ```sh
 $command $parameter1 $parameter2
+```
 
 ## Available Commands
 
+```
 * осмотреться — Look around the current room.
 * идти [direction] — Move to another room (e.g., "идти коридор").
 * взять [item] — Pick up an item (e.g., "взять ключи").
 * надеть [item] — Wear an item (e.g., "надеть рюкзак").
 * применить [item] [object] — Apply an item to an object (e.g., "применить ключи дверь").
 * выход — Exit the game.
+```
 
 ## Example Commands
 
+```
 * осмотреться
 * идти коридор
 * взять ключи
 * надеть рюкзак
 * применить ключи дверь
+```
 
 ## Game World
 
+```
 The game world consists of the following rooms:
 
 - Kitchen (кухня): The starting room with some items.
 - Corridor (коридор): A connecting room with exits to other rooms.
 - Bedroom (комната): A room with more items to pick up.
 - Outside (улица): The final room you need to unlock by applying the keys to the door.
+```
